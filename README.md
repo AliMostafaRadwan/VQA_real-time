@@ -5,7 +5,7 @@ VQA using cv2 as a video input
 
 ## Installation
 
-1. Clone the repository
+1. Clone the repository `git clone https://github.com/AliMostafaRadwan/VQA_real-time.git`
 2. Install the requirements
 3. Run the main.py file
 
