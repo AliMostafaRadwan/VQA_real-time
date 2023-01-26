@@ -13,4 +13,4 @@ VQA using cv2 as a video input
 `pip install -r requirements.txt`
 
 ## Usage
-when you run the main.py file, you will see a window with a webcam feed. You can ask your question in the terminal and the answer will be displayed on the screen. (note! after you run the main.py file, you may see a warning message. This is because the pyqt5 library is not compatible with the latest version of opencv. You can ignore this message. and type your question in the terminal.)
+when you run the `main.py` file, you will see a window with a webcam feed. You can ask your question in the terminal and the answer will be displayed on the screen. (note! after you run the `main.py` file, you may see a warning message(`QApplication: invalid style override 'adwaita' passed, ignoring it.`). This is because the pyqt5 library is not compatible with the latest version of opencv. You can ignore this message. and type your question in the terminal.)
