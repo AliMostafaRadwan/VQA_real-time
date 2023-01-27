@@ -1,7 +1,7 @@
 from transformers import ViltProcessor, ViltForQuestionAnswering
 import cv2
 import threading
-from queue import Queue
+
 
 # disable warnings
 import warnings
@@ -32,15 +32,15 @@ cap = cv2.VideoCapture(1)
 input_thread = threading.Thread(target=get_user_input)
 input_thread.start()
 
-frame_queue = Queue()
 
-def capture_frame(frame_queue):
+
+def capture_frame():
     while True:
         # Read a frame from the webcam
         global frame
         _, frame = cap.read()
         frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-        frame_queue.put(frame)
+        
         # Display the frame in the window
         
         cv2.putText(frame, "Question: ", (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255), 2)
@@ -57,11 +57,11 @@ def capture_frame(frame_queue):
     cv2.destroyAllWindows()
 
 
-def process_question(frame_queue):
+def process_question():
     global ans
     while True:
         if user_input.strip() != "":
-            # frame = frame_queue.get()
+            
             encoding = processor(frame, user_input, return_tensors="pt")
             outputs = model(**encoding)
             logits = outputs.logits
@@ -70,9 +70,9 @@ def process_question(frame_queue):
             # print("Predicted answer:", ans)
 
 
-frame_queue = Queue()
 
-frame_thread = threading.Thread(target=capture_frame, args=(frame_queue,))
-question_thread = threading.Thread(target=process_question, args=(frame_queue,))
+
+frame_thread = threading.Thread(target=capture_frame)
+question_thread = threading.Thread(target=process_question)
 frame_thread.start()
 question_thread.start()
