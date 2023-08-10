@@ -26,7 +26,7 @@ model = ViltForQuestionAnswering.from_pretrained("dandelin/vilt-b32-finetuned-vq
 
 
 # Open a connection to the webcam
-cap = cv2.VideoCapture(1)
+cap = cv2.VideoCapture(0)
 
 # Create a thread to take user input
 input_thread = threading.Thread(target=get_user_input)
